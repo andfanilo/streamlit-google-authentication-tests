@@ -1,0 +1,6 @@
+fastapi
+firebase-admin
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+streamlit>=1.37
