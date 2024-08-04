@@ -37,6 +37,9 @@ Head to [GCP Console](https://console.cloud.google.com/)
   - configure email, links on first page.
   - in Scopes second page, add OpenID Connect scopes: `openid`, `../auth/userinfo.profile` and `.../auth/userinfo.email`.
     - If you enabled the `Calendar API` (either by typing it in search bar or from **APIs and services >Enabled APIs and Services**), add the `.../auth/calendar.events.readonly` to ask the user for Calendar authorization
+
+![](./images/oauth_scopes.png)
+
   - add tests users in 3rd page
 
 - In **APIs and services > Credentials**, create a OAuth 2.0 Web Client ID and download it as a JSON file `client_secret.json` to the root of the project.
@@ -44,6 +47,9 @@ Head to [GCP Console](https://console.cloud.google.com/)
   - As authorised redirect URIs, I added:
     - `http://localhost:9000/`: Flask endpoint from google-oauthlib's `InstalledAppFlow.run_local_server` and `get_user_credentials` methods
     - `http://localhost:8000/auth/code` and `http://localhost:8000/auth/token`: our own FastAPI callback endpoints
+
+![](./images/oauth_creds.png)
+
 - Copy the credentials `client_id` and `client_secret` to `.streamlit/secrets.toml` file
 
 ```toml
