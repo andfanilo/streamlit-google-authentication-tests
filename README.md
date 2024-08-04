@@ -83,6 +83,21 @@ For pages 3 and 4, run FastAPI redirect server in parallel: `fastapi dev fastapi
 
 ![](./images/1-get_user_credentials.png)
 
+* Good enough for local / on-premise deployments
+* Wouldn't work on Streamlit Cloud because the Flask port is not open. Create your own Docker image to expose Streamlit + Flask ports
+
 ### Page 3 & 4: Catch redirect with custom FastAPI endpoint
 
 ![](./images/2-FastAPI.png)
+
+* Deploy FastAPI separately as authentication and session cookie management service
+* Hide both services behind reverse proxy with single URL
+* I think it's a difficult setup to maintain. FastAPI + DB session cookies to replace with Firebase Authentication or Auth0 if you don't have time for this like me...
+  * When Native OAuth+OIDC, redirects and custom endpoints appear in Streamlit, this solution seems the best
+
+### Page 5 & 6: Frontend signin
+
+* Streamlit Component which embeds Google / Firebase signin
+* Google signin stores SIDCC cookie, Firebase uses API Keys+JWT in IndexedDB on browser to track user session
+* Because of Streamlit Component iframe embed, doesn't work in deployments because CSRF issues. Streamlit host and iframe embedding signin have different addresses. 
+  * Google Tap has [intermediate Iframe](https://developers.google.com/identity/gsi/web/amp/intermediate-iframe) that may solve this?
