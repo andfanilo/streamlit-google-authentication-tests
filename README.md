@@ -72,3 +72,11 @@ Run Streamlit multipage app: `streamlit run streamlit_app.py`
 For pages 3 and 4, run FastAPI redirect server in parallel: `fastapi dev fastapi_server.py`.
 
 - Access FastAPI OpenAPI in `http://localhost:8000/docs`. Visualize state of app in `/sessions` URI.
+
+### Page 1 & 2: google-oauthlib run_local_server
+
+![](./images/1-get_user_credentials.png)
+
+### Page 3 & 4: Catch redirect with custom FastAPI endpoint
+
+![](./images/2-FastAPI.png)
