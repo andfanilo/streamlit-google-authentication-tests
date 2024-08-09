@@ -29,7 +29,9 @@ def get_flow():
 
 @st.cache_data
 def get_auth_url(_flow: Flow):
-    auth_url, state = _flow.authorization_url(prompt="consent")
+    auth_url, state = _flow.authorization_url(
+        prompt="consent", # force consent for demo purpose. Choice between none, login, select_account and consent
+    )
     return (auth_url, state)
 
 

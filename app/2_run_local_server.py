@@ -14,6 +14,7 @@ flow = InstalledAppFlow.from_client_secrets_file(
         "openid",
         "https://www.googleapis.com/auth/userinfo.email",
         "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/calendar.events.readonly",
     ],
     redirect_uri="http://localhost:9000/",
 )
@@ -25,6 +26,7 @@ def login_callback():
         port=9000,
         open_browser=True,  # pass to False in container
         success_message="Authentication Complete. You can go back to the app if this window is not automatically closed.",
+        prompt="login", # force relogin for demo purpose. Choice between none, login, select_account and consent
     )
     id_info = id_token.verify_token(
         credentials.id_token,
